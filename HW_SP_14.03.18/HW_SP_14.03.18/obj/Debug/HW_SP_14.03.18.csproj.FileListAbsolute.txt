@@ -1,0 +1,9 @@
+Z:\Системное программирование\HWs\HW_SP_14.03.18\HW_SP_14.03.18\bin\Debug\HW_SP_14.03.18.exe.config
+Z:\Системное программирование\HWs\HW_SP_14.03.18\HW_SP_14.03.18\bin\Debug\HW_SP_14.03.18.exe
+Z:\Системное программирование\HWs\HW_SP_14.03.18\HW_SP_14.03.18\bin\Debug\HW_SP_14.03.18.pdb
+Z:\Системное программирование\HWs\HW_SP_14.03.18\HW_SP_14.03.18\obj\Debug\HW_SP_14._03._18.MainForm.resources
+Z:\Системное программирование\HWs\HW_SP_14.03.18\HW_SP_14.03.18\obj\Debug\HW_SP_14._03._18.Properties.Resources.resources
+Z:\Системное программирование\HWs\HW_SP_14.03.18\HW_SP_14.03.18\obj\Debug\HW_SP_14.03.18.csproj.GenerateResource.Cache
+Z:\Системное программирование\HWs\HW_SP_14.03.18\HW_SP_14.03.18\obj\Debug\HW_SP_14.03.18.exe
+Z:\Системное программирование\HWs\HW_SP_14.03.18\HW_SP_14.03.18\obj\Debug\HW_SP_14.03.18.pdb
+Z:\Системное программирование\HWs\HW_SP_14.03.18\HW_SP_14.03.18\obj\Debug\HW_SP_14.03.18.csprojResolveAssemblyReference.cache

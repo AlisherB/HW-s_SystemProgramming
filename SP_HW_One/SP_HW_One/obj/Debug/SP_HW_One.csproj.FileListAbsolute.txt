@@ -1,0 +1,8 @@
+Z:\Системное программирование\HWs\SP_HW_One\SP_HW_One\bin\Debug\SP_HW_One.exe.config
+Z:\Системное программирование\HWs\SP_HW_One\SP_HW_One\bin\Debug\SP_HW_One.exe
+Z:\Системное программирование\HWs\SP_HW_One\SP_HW_One\bin\Debug\SP_HW_One.pdb
+Z:\Системное программирование\HWs\SP_HW_One\SP_HW_One\obj\Debug\SP_HW_One.Form1.resources
+Z:\Системное программирование\HWs\SP_HW_One\SP_HW_One\obj\Debug\SP_HW_One.Properties.Resources.resources
+Z:\Системное программирование\HWs\SP_HW_One\SP_HW_One\obj\Debug\SP_HW_One.csproj.GenerateResource.Cache
+Z:\Системное программирование\HWs\SP_HW_One\SP_HW_One\obj\Debug\SP_HW_One.exe
+Z:\Системное программирование\HWs\SP_HW_One\SP_HW_One\obj\Debug\SP_HW_One.pdb
