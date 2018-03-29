@@ -23,7 +23,7 @@ namespace SP_HW_One
                 listViewItems.Text = process.ProcessName;
                 listViewItems.SubItems.Add(process.Id.ToString());
                 listViewItems.SubItems.Add(process.MachineName);
-                listViewItems.SubItems.Add(process.StartTime.ToString());
+                //listViewItems.SubItems.Add(process.StartTime.ToString());
                 listView1.Items.Add(listViewItems);
             }
             listView1.EndUpdate();

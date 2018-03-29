@@ -6,3 +6,12 @@ Z:\Системное программирование\HWs\SP_HW_One\SP_HW_One\o
 Z:\Системное программирование\HWs\SP_HW_One\SP_HW_One\obj\Debug\SP_HW_One.csproj.GenerateResource.Cache
 Z:\Системное программирование\HWs\SP_HW_One\SP_HW_One\obj\Debug\SP_HW_One.exe
 Z:\Системное программирование\HWs\SP_HW_One\SP_HW_One\obj\Debug\SP_HW_One.pdb
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\SP_HW_One\SP_HW_One\bin\Debug\SP_HW_One.exe.config
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\SP_HW_One\SP_HW_One\bin\Debug\SP_HW_One.exe
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\SP_HW_One\SP_HW_One\bin\Debug\SP_HW_One.pdb
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\SP_HW_One\SP_HW_One\obj\Debug\SP_HW_One.csprojResolveAssemblyReference.cache
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\SP_HW_One\SP_HW_One\obj\Debug\SP_HW_One.MainForm.resources
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\SP_HW_One\SP_HW_One\obj\Debug\SP_HW_One.Properties.Resources.resources
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\SP_HW_One\SP_HW_One\obj\Debug\SP_HW_One.csproj.GenerateResource.Cache
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\SP_HW_One\SP_HW_One\obj\Debug\SP_HW_One.exe
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\SP_HW_One\SP_HW_One\obj\Debug\SP_HW_One.pdb
