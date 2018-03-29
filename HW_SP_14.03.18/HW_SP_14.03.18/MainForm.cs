@@ -24,9 +24,9 @@ namespace HW_SP_14._03._18
 
         private void BtnEndPath_Click(object sender, EventArgs e)
         {
-            if (openFileDialog.ShowDialog() == DialogResult.Cancel)
+            if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
                 return;
-            endPath = openFileDialog.FileName;
+            endPath = saveFileDialog.FileName;
             endPathTextBox.Text = endPath;
         }
 
@@ -34,7 +34,7 @@ namespace HW_SP_14._03._18
         {
             if (String.IsNullOrEmpty(beginPath) || String.IsNullOrEmpty(endPath))
             {
-                MessageBox.Show("Выберите файл...");
+                MessageBox.Show("Файл не выбран");
             }
             Thread th = new Thread(Copy);
             th.Start();
@@ -42,24 +42,25 @@ namespace HW_SP_14._03._18
 
         private void Copy()
         {
-            int byteSize = 4096;
-            byte[] array = new byte[byteSize];
+            const int bufferSize = 1024 * 4;
+            
             try
             {
                 using (FileStream input = new FileStream(beginPath, FileMode.Open))
                 {
-                    long length = input.Length;
-                    long pos = input.Position;
-                    using (FileStream output = new FileStream(endPath, FileMode.OpenOrCreate))
+                    byte[] buf = new byte[bufferSize];
+                    int rw_count = (int)input.Length / bufferSize;
+                    int lastSize = (int)input.Length % bufferSize;
+                    using (FileStream output = new FileStream(endPath, FileMode.Create))
                     {
-                        progressBar.Invoke(new Action<int>(((x) => progressBar.Maximum = x)), (int)length / byteSize);
+                        progressBar.Invoke(new Action<int>(((x) => progressBar.Maximum = x)), (int)input.Length / bufferSize);
 
-                        while (pos < length)
+                        for (int i = 0; i < rw_count; i++)
                         {
-                            input.Read(array, 0, byteSize);
-                            output.Write(array, 0, byteSize);
-                            progressBar.Invoke(new Action<int>(((x) => progressBar.Value = x)), (int)pos / byteSize);
-                        }
+                            input.Read(buf, 0, bufferSize);
+                            output.Write(buf, 0, bufferSize);
+                            progressBar.Invoke(new Action<int>(((x) => progressBar.Value = x)), (int)input.Position / bufferSize);
+                        } 
                     }
                 }
             }
@@ -68,7 +69,6 @@ namespace HW_SP_14._03._18
                 MessageBox.Show(e.Message);
                 return;
             }
-            
             MessageBox.Show("Копирование завершено!");
         }
     }

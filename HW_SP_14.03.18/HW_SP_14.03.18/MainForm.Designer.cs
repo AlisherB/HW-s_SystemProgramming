@@ -37,6 +37,7 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.btnCopy = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // beginPathTextBox
@@ -156,6 +157,7 @@
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
 

@@ -7,3 +7,12 @@ Z:\Системное программирование\HWs\HW_SP_14.03.18\HW_SP_
 Z:\Системное программирование\HWs\HW_SP_14.03.18\HW_SP_14.03.18\obj\Debug\HW_SP_14.03.18.exe
 Z:\Системное программирование\HWs\HW_SP_14.03.18\HW_SP_14.03.18\obj\Debug\HW_SP_14.03.18.pdb
 Z:\Системное программирование\HWs\HW_SP_14.03.18\HW_SP_14.03.18\obj\Debug\HW_SP_14.03.18.csprojResolveAssemblyReference.cache
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\HW_SP_14.03.18\HW_SP_14.03.18\bin\Debug\HW_SP_14.03.18.exe.config
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\HW_SP_14.03.18\HW_SP_14.03.18\bin\Debug\HW_SP_14.03.18.exe
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\HW_SP_14.03.18\HW_SP_14.03.18\bin\Debug\HW_SP_14.03.18.pdb
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\HW_SP_14.03.18\HW_SP_14.03.18\obj\Debug\HW_SP_14.03.18.csprojResolveAssemblyReference.cache
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\HW_SP_14.03.18\HW_SP_14.03.18\obj\Debug\HW_SP_14._03._18.MainForm.resources
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\HW_SP_14.03.18\HW_SP_14.03.18\obj\Debug\HW_SP_14._03._18.Properties.Resources.resources
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\HW_SP_14.03.18\HW_SP_14.03.18\obj\Debug\HW_SP_14.03.18.csproj.GenerateResource.Cache
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\HW_SP_14.03.18\HW_SP_14.03.18\obj\Debug\HW_SP_14.03.18.exe
+C:\Users\БекмухамбетА\Documents\GitHub\HW-s_SystemProgramming\HW_SP_14.03.18\HW_SP_14.03.18\obj\Debug\HW_SP_14.03.18.pdb
