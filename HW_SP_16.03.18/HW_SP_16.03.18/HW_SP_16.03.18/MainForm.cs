@@ -32,12 +32,12 @@ namespace HW_SP_16._03._18
                 fstream.Read(text, 0, text.Length);
                 pText = Encoding.Default.GetString(text);
             
-                byte[] key = Encoding.Default.GetBytes(password_textBox.Text);
+                byte[] password = Encoding.Default.GetBytes(password_textBox.Text);
                 byte[] result = new byte[pText.Length];
 
                 for (int i = 0; i < text.Length; i++)
                 {
-                    result[i] = (byte)(text[i] ^ key[i % key.Length]);
+                    result[i] = (byte)(text[i] ^ password[i % password.Length]);
                 }
 
                 FileStream fstream1 = new FileStream(filePath_textBox.Text, FileMode.Truncate);
@@ -60,11 +60,11 @@ namespace HW_SP_16._03._18
                 pText = Encoding.Default.GetString(text);
 
                 byte[] result = new byte[pText.Length];
-                byte[] key = Encoding.Default.GetBytes(password_textBox.Text);
+                byte[] password = Encoding.Default.GetBytes(password_textBox.Text);
 
                 for (int i = 0; i < pText.Length; i++)
                 {
-                    result[i] = (byte)(pText[i] ^ key[i % key.Length]);
+                    result[i] = (byte)(pText[i] ^ password[i % password.Length]);
                 }
 
                 FileStream fstream1 = new FileStream(filePath_textBox.Text, FileMode.Truncate);
