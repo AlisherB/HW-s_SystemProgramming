@@ -14,34 +14,18 @@ namespace HW_SP_16._03._18
 {
     public partial class MainForm : Form
     {
-        Thread th_encrypt, th_decrypt;
+        Thread th_crypt = null;
         public MainForm()
         {
             InitializeComponent();
-            th_encrypt = new Thread(Encrypt);
-            th_decrypt = new Thread(Decrypt);
         }
 
-        private void Encrypt()
+        private void Encrypt(string password)
         {
-            string pText;
+            byte[] passwordBytes = Encoding.Default.GetBytes(password_textBox.Text);
             try
             {
-                FileStream fstream = new FileStream(filePath_textBox.Text, FileMode.Open);
-                byte[] text = new byte[fstream.Length];
-                fstream.Read(text, 0, text.Length);
-                pText = Encoding.Default.GetString(text);
-            
-                byte[] password = Encoding.Default.GetBytes(password_textBox.Text);
-                byte[] result = new byte[pText.Length];
-
-                for (int i = 0; i < text.Length; i++)
-                {
-                    result[i] = (byte)(text[i] ^ password[i % password.Length]);
-                }
-
-                FileStream fstream1 = new FileStream(filePath_textBox.Text, FileMode.Truncate);
-                fstream1.Write(result, 0, result.Length);
+                Crypt(password);
             }
             catch (Exception ex)
             {
@@ -49,30 +33,38 @@ namespace HW_SP_16._03._18
             }
         }
 
-        private void Decrypt()
+        private void Decrypt(string password)
         {
-            string pText;
+            byte[] passwordBytes = Encoding.Default.GetBytes(password_textBox.Text);
             try
             {
-                FileStream fstream = new FileStream(filePath_textBox.Text, FileMode.Open);
-                byte[] text = new byte[fstream.Length];
-                fstream.Read(text, 0, text.Length);
-                pText = Encoding.Default.GetString(text);
-
-                byte[] result = new byte[pText.Length];
-                byte[] password = Encoding.Default.GetBytes(password_textBox.Text);
-
-                for (int i = 0; i < pText.Length; i++)
-                {
-                    result[i] = (byte)(pText[i] ^ password[i % password.Length]);
-                }
-
-                FileStream fstream1 = new FileStream(filePath_textBox.Text, FileMode.Truncate);
-                fstream1.Write(result, 0, result.Length);
+                Crypt(password);
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Crypt(string password)
+        {
+            string pText;
+            byte[] text;
+            using (FileStream fstream = new FileStream(ofd.FileName, FileMode.Open, FileAccess.ReadWrite))
+            {
+                text = new byte[fstream.Length];
+                progressBar.Invoke(new Action<int>(((x) => progressBar.Maximum = x)), (int)(fstream.Length / text.Length));
+                fstream.Read(text, 0, text.Length);
+                pText = Encoding.Default.GetString(text);
+            }
+
+            byte[] result = new byte[pText.Length];
+            for (int i = 0; i < text.Length; i++)
+                result[i] = (byte)(text[i] ^ password[i % password.Length]);
+
+            using (FileStream fstream = new FileStream(ofd.FileName, FileMode.Truncate))
+            {
+                fstream.Write(result, 0, result.Length);
             }
         }
 
@@ -90,39 +82,36 @@ namespace HW_SP_16._03._18
                 MessageBox.Show("Выберите файл!!!");
                 return;
             }
-            if (String.IsNullOrEmpty(password_textBox.Text))
+            else if (String.IsNullOrEmpty(password_textBox.Text))
             {
                 MessageBox.Show("Введите пароль!!!");
                 return;
             }
 
-            if (encrypt_radioButton.Checked)
+            if (!(encrypt_radioButton.Checked || decrypt_radioButton.Checked))
             {
-                if (th_encrypt.ThreadState == ThreadState.Unstarted)
-                    th_encrypt.Start();
-                else th_encrypt.Resume();
+                MessageBox.Show("Не выбран пункт шифровки или дешифровки!");
+            }
+            else if (encrypt_radioButton.Checked)
+            {
+                th_crypt = new Thread(() => Encrypt(password_textBox.Text));
                 MessageBox.Show("Шифрование завершено!");
             }
             else if (decrypt_radioButton.Checked)
             {
-                if (th_decrypt.ThreadState == ThreadState.Unstarted)
-                    th_decrypt.Start();
-                else th_decrypt.Resume();
+                th_crypt = new Thread(() => Decrypt(password_textBox.Text));
                 MessageBox.Show("Расшифровка завершена!");
             }
+            th_crypt.Start();
+
+            
             
         }
 
         private void Cancel_button_Click(object sender, EventArgs e)
         {
-            if (th_encrypt.ThreadState == ThreadState.Running)
-            {
-                th_encrypt.Suspend();
-            }
-            else if (th_decrypt.ThreadState == ThreadState.Running)
-            {
-                th_decrypt.Suspend();
-            }
+            if (th_crypt.ThreadState == ThreadState.Running)
+                th_crypt.Suspend();
         }
     }
 }
