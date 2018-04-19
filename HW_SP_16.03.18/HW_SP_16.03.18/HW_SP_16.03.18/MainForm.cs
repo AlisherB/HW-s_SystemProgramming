@@ -15,6 +15,7 @@ namespace HW_SP_16._03._18
     public partial class MainForm : Form
     {
         Thread th_crypt = null;
+        const int bufferSize = 1024;
         public MainForm()
         {
             InitializeComponent();
@@ -25,7 +26,11 @@ namespace HW_SP_16._03._18
             byte[] passwordBytes = Encoding.Default.GetBytes(password_textBox.Text);
             try
             {
-                Crypt(password);
+                using (FileStream fstream = new FileStream(ofd.FileName, FileMode.Open))
+                {
+                    progressBar.Invoke(new Action<int>(((x) => progressBar.Maximum = x)), (int)fstream.Length / bufferSize);
+                    Crypt(password);
+                }
             }
             catch (Exception ex)
             {
@@ -38,7 +43,11 @@ namespace HW_SP_16._03._18
             byte[] passwordBytes = Encoding.Default.GetBytes(password_textBox.Text);
             try
             {
-                Crypt(password);
+                using (FileStream fstream = new FileStream(ofd.FileName, FileMode.Open))
+                {
+                    progressBar.Invoke(new Action<int>(((x) => progressBar.Maximum = x)), (int)fstream.Length / bufferSize);
+                    Crypt(password);
+                }
             }
             catch(Exception ex)
             {
@@ -49,22 +58,30 @@ namespace HW_SP_16._03._18
         private void Crypt(string password)
         {
             string pText;
-            byte[] text;
+            byte[] txt;
             using (FileStream fstream = new FileStream(ofd.FileName, FileMode.Open, FileAccess.ReadWrite))
             {
-                text = new byte[fstream.Length];
-                progressBar.Invoke(new Action<int>(((x) => progressBar.Maximum = x)), (int)(fstream.Length / text.Length));
-                fstream.Read(text, 0, text.Length);
-                pText = Encoding.Default.GetString(text);
+                txt = new byte[fstream.Length];
+                
+                fstream.Read(txt, 0, txt.Length);
+                pText = Encoding.Default.GetString(txt);
             }
 
             byte[] result = new byte[pText.Length];
-            for (int i = 0; i < text.Length; i++)
-                result[i] = (byte)(text[i] ^ password[i % password.Length]);
-
-            using (FileStream fstream = new FileStream(ofd.FileName, FileMode.Truncate))
+            for (int i = 0; i < txt.Length; i++)
+                result[i] = (byte)(txt[i] ^ password[i % password.Length]);
+                
+            using (FileStream fstream = new FileStream(ofd.FileName, FileMode.Truncate,FileAccess.ReadWrite))
             {
+                progressBar.Invoke(new Action<int>((x) =>
+                {
+                    if (progressBar.Maximum < x)
+                        progressBar.Maximum = x;
+                    progressBar.Value = x;
+                }), (int)(fstream.Position / bufferSize));
+                progressBar.Invoke(new Action<int>(((x) => progressBar.Value = x)), (int)(fstream.Position / bufferSize));
                 fstream.Write(result, 0, result.Length);
+                
             }
         }
 
@@ -95,6 +112,7 @@ namespace HW_SP_16._03._18
             else if (encrypt_radioButton.Checked)
             {
                 th_crypt = new Thread(() => Encrypt(password_textBox.Text));
+                
                 MessageBox.Show("Шифрование завершено!");
             }
             else if (decrypt_radioButton.Checked)
@@ -103,8 +121,6 @@ namespace HW_SP_16._03._18
                 MessageBox.Show("Расшифровка завершена!");
             }
             th_crypt.Start();
-
-            
             
         }
 
