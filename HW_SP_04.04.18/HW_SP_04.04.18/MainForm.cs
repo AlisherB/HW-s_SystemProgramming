@@ -1,11 +1,14 @@
 ﻿using System.Windows.Forms;
 using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 
 namespace HW_SP_04._04._18
 {
     public partial class MainForm : Form
     {
+        RegistryKey regBranch = null;
+        RegistryKey regSubKey = null;
         public MainForm()
         {
             InitializeComponent();
@@ -34,7 +37,7 @@ namespace HW_SP_04._04._18
             tn.Nodes.Clear();
             string strRegistryPath = tn.FullPath;
 
-            RegistryKey regBranch = null;
+            
             //if (strRegistryPath.StartsWith("HKEY_CLASSES_ROOT"))
             //    regBranch = Registry.ClassesRoot;
             /*else*/ if (strRegistryPath.StartsWith("HKEY_CURRENT_USER"))
@@ -46,7 +49,7 @@ namespace HW_SP_04._04._18
             else if (strRegistryPath.StartsWith("HKEY_CURRENT_CONFIG"))
                 regBranch = Registry.CurrentConfig;
 
-            RegistryKey regSubKey = null;
+            
             try
             {
                 if (null != tn.Parent)
@@ -70,7 +73,17 @@ namespace HW_SP_04._04._18
                 tn.Nodes.Add(tnBranch);
             }
         }
-        
+
+        private void AddValuesToList(RegistryKey key)
+        {
+            foreach (string name in key.GetValueNames())
+            {
+                string value = key.GetValue(name).ToString();
+                ListViewItem item = new ListViewItem(new string[] { name, value });
+                listView.Items.Add(item);
+            }
+        }
+
         public void RootNodes()
         {
             treeView.BeginUpdate();
