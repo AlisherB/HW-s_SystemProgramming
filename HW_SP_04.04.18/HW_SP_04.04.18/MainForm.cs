@@ -14,12 +14,32 @@ namespace HW_SP_04._04._18
             InitializeComponent();
             RootNodes();
         }
-        
+
+        RegistryKey curRegKey = Registry.CurrentUser;
         private void TreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             var node = treeView.SelectedNode;
             var path = node.FullPath;
             statusLabel_path.Text = path;
+            listView.Clear();
+            try
+            {
+                AddValuesToList(curRegKey);
+                //string regKeyName = e.Node.FullPath.Replace(@"HKEY_CURRENT_USER\", "");
+                //RegistryKey regSubKey = curRegKey.OpenSubKey(regKeyName);
+                //string[] values = regSubKey.GetValueNames();
+                //for (int i = 0; i < values.Length; i++)
+                //{
+                //    RegistryValueKind kind = regSubKey.GetValueKind(values[i]);
+                //    ListViewItem item = listView.Items.Add(i.ToString());
+                //    item.SubItems.Add(values[i]);
+                //    item.SubItems.Add(kind.ToString());
+                //}
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void TreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
@@ -74,7 +94,7 @@ namespace HW_SP_04._04._18
             }
         }
 
-        private void AddValuesToList(RegistryKey key)
+        public void AddValuesToList(RegistryKey key)
         {
             foreach (string name in key.GetValueNames())
             {
